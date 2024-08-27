@@ -6,6 +6,10 @@ const number = "0123456789";
 const symbol = "@#$()&+-=[]{}<>/*~^_%" ;
 const allChars = upperCase + lowerCase + number + symbol;
 
+function getRandomChar(chars) {
+    return chars[Math.floor(Math.random() * chars.length)];
+}
+
 function generatePassword() {
     let password = '';
     password += getRandomChar(upperCase);
@@ -18,5 +22,12 @@ function generatePassword() {
     }
     passwordBox.value = password;
 }
-const button = document.createElement('button');
+const button = document.querySelector('button');
 button.addEventListener('click', generatePassword, false);
+
+function copyPassword() {
+    passwordBox.select();
+    document.execCommand('copy');
+}
+
+document.getElementById('copy').addEventListener('click', copyPassword, false);
